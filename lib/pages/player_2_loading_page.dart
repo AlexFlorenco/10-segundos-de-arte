@@ -1,10 +1,9 @@
 import 'package:artes/components/timer_widget.dart';
-import 'package:artes/components/word_roulette_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
-class LoadingPage extends StatelessWidget {
-  const LoadingPage({super.key});
+class Player2LoadingPage extends StatelessWidget {
+  const Player2LoadingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,30 +16,26 @@ class LoadingPage extends StatelessWidget {
           child: Column(
             children: [
               const Text(
-                'PREPARE-SE!',
+                textAlign: TextAlign.center,
+                'AGUARDANDO JOGADOR 1...',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
               ),
               const SizedBox(height: 16),
               const Text(
-                "Você terá 10 segundos para desenhar um(a):",
+                "Você terá 10 segundos para descobrir o que o Jogador 1 desenhou!",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 26),
               ),
               const SizedBox(height: 26),
-              const WordRouletteWidget(),
               const Spacer(),
               const Text(
                 'COMEÇANDO EM...',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               TimerWidget(
-                duration: 3,
-                delay: 3,
-                onTimerEnd: () {
-                  Navigator.of(context).pushNamed(
-                    '/drawing',
-                  );
-                },
+                duration: 10,
+                delay: 1,
+                onTimerEnd: () => Navigator.of(context).pushNamed('/discoverPage'),
               ),
             ],
           ),
