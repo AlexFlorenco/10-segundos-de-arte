@@ -1,7 +1,7 @@
 import 'package:artes/models/words_model.dart';
 import 'package:artes/pages/check_page.dart';
 import 'package:artes/pages/discover_page.dart';
-import 'package:artes/pages/loading_page.dart';
+import 'package:artes/pages/player_1_loading_page.dart';
 import 'package:flutter/material.dart';
 import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
@@ -34,7 +34,7 @@ class _TimesOverPageState extends State<TimesOverPage>
       } else if (WordsModel.instance.words.length == 3) {
         Navigator.push(context, FadeRoute(page: const DiscoverPage()));
       } else {
-        Navigator.push(context, FadeRoute(page: const LoadingPage()));
+        Navigator.push(context, FadeRoute(page: const Player1LoadingPage()));
       }
     });
   }
