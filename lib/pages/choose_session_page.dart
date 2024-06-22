@@ -27,10 +27,7 @@ class _ChooseSessionsPageState extends State<ChooseSessionsPage> {
           SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            child: Scribble(
-              notifier: notifier,
-              drawPen: true,
-            ),
+            child: Scribble(notifier: notifier),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 48),
