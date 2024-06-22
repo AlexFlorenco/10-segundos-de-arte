@@ -38,6 +38,8 @@ dependencies:
   scribble: ^0.10.0+1
   value_notifier_tools: ^0.1.2
   neubrutalism_ui: ^2.0.2
+  firebase_core: ^3.1.0
+  firebase_database: ^11.0.1
 
 dev_dependencies:
   flutter_test:

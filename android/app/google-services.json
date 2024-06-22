@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "939951554811",
+    "project_id": "segundos-de-arte",
+    "storage_bucket": "segundos-de-arte.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:939951554811:android:a6177bc1947cd571e6b05e",
+        "android_client_info": {
+          "package_name": "com.artes.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkuTLJgkYd2yg_66TUv1T5EbaI_QY7ubg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
