@@ -1,8 +1,8 @@
 import 'package:artes/components/neu_close_button.dart';
 import 'package:artes/components/neu_text_button_widget.dart';
-import 'package:artes/components/switch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:neubrutalism_ui/neubrutalism_ui.dart';
+import 'package:scribble/scribble.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,59 +12,65 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  late ScribbleNotifier notifier;
+
+  @override
+  void initState() {
+    super.initState();
+    notifier = ScribbleNotifier();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      body: Padding(
-        padding: const EdgeInsets.only(
-          top: 210,
-          right: 48,
-          left: 48,
-          bottom: 48,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            RichText(
-              textAlign: TextAlign.center,
-              text: const TextSpan(
-                style: TextStyle(
-                  fontFamily: 'ShantellSans',
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-                children: [
-                  TextSpan(text: '10', style: TextStyle(fontSize: 60)),
-                  TextSpan(text: 'segundos', style: TextStyle(fontSize: 40)),
-                  TextSpan(text: '\n'),
-                  TextSpan(text: 'de ', style: TextStyle(fontSize: 30)),
-                  TextSpan(
-                      text: 'Arte', style: TextStyle(height: 0.8, fontSize: 60))
-                ],
-              ),
-            ),
-            const SizedBox(height: 50),
-            NeuTextButtonWidget(
-              label: 'JOGAR',
-              onPressed: () => Navigator.pushNamed(context, '/loading'),
-            ),
-            const SizedBox(height: 14),
-            NeuTextButtonWidget(
-              label: 'COMO FUNCIONA',
-              onPressed: () => _showHowItWorks(),
-            ),
-            const Spacer(),
-            const Row(
+      body: Stack(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            child: Scribble(notifier: notifier),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 48),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SwitchWidget(type: 'sound'),
-                SizedBox(width: 14),
-                SwitchWidget(type: 'brightness')
+                RichText(
+                  textAlign: TextAlign.center,
+                  text: const TextSpan(
+                    style: TextStyle(
+                      fontFamily: 'ShantellSans',
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                    children: [
+                      TextSpan(text: '10', style: TextStyle(fontSize: 60)),
+                      TextSpan(
+                          text: 'segundos', style: TextStyle(fontSize: 40)),
+                      TextSpan(text: '\n'),
+                      TextSpan(text: 'de ', style: TextStyle(fontSize: 30)),
+                      TextSpan(
+                          text: 'Arte',
+                          style: TextStyle(height: 0.8, fontSize: 60))
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 50),
+                NeuTextButtonWidget(
+                  label: 'JOGAR',
+                  onPressed: () => Navigator.pushNamed(context, '/schooseSession'),
+                ),
+                const SizedBox(height: 14),
+                NeuTextButtonWidget(
+                  label: 'COMO FUNCIONA',
+                  onPressed: () => _showHowItWorks(),
+                ),
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+        ],
       ),
     );
   }
