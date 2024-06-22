@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 50),
                 NeuTextButtonWidget(
                   label: 'JOGAR',
-                  onPressed: () => Navigator.pushNamed(context, '/schooseSession'),
+                  onPressed: () => Navigator.pushNamed(context, '/chooseSession'),
                 ),
                 const SizedBox(height: 14),
                 NeuTextButtonWidget(
