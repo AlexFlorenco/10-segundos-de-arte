@@ -6,7 +6,7 @@ import 'package:artes/pages/enter_session_page.dart';
 import 'package:artes/pages/home_page.dart';
 import 'package:artes/pages/loading_page.dart';
 import 'package:artes/pages/player_2_loading.dart';
-import 'package:artes/pages/schoose_session_page.dart';
+import 'package:artes/pages/choose_session_page.dart';
 import 'package:artes/pages/times_over_page.dart';
 import 'package:flutter/material.dart';
 
@@ -22,14 +22,11 @@ class AppWidget extends StatelessWidget {
       ),
       routes: {
         '/': (context) => const HomePage(),
-        '/schooseSession': (context) => const SchooseSessionsPage(),
-
+        '/chooseSession': (context) => const ChooseSessionsPage(),
         '/createSession': (context) => const CreateSessionPage(),
         '/player1loading': (context) => const Player1LoadingPage(),
-        
         '/joinSession': (context) => const JoinSessionPage(),
         '/player2loading': (context) => const Player2Loading(),
-        
         '/drawing': (context) => DrawingPage(),
         '/discoverPage': (context) => const DiscoverPage(),
         '/timesOver': (context) => const TimesOverPage(),

@@ -2,14 +2,14 @@ import 'package:artes/components/neu_text_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:scribble/scribble.dart';
 
-class SchooseSessionsPage extends StatefulWidget {
-  const SchooseSessionsPage({super.key});
+class ChooseSessionsPage extends StatefulWidget {
+  const ChooseSessionsPage({super.key});
 
   @override
-  State<SchooseSessionsPage> createState() => _SchooseSessionsPageState();
+  State<ChooseSessionsPage> createState() => _ChooseSessionsPageState();
 }
 
-class _SchooseSessionsPageState extends State<SchooseSessionsPage> {
+class _ChooseSessionsPageState extends State<ChooseSessionsPage> {
   late ScribbleNotifier notifier;
 
   @override
@@ -46,7 +46,8 @@ class _SchooseSessionsPageState extends State<SchooseSessionsPage> {
                 const SizedBox(height: 50),
                 NeuTextButtonWidget(
                   label: 'CRIAR SESSÃO',
-                  onPressed: () => Navigator.pushNamed(context, '/createSession'),
+                  onPressed: () =>
+                      Navigator.pushNamed(context, '/createSession'),
                 ),
                 const SizedBox(height: 14),
                 NeuTextButtonWidget(
