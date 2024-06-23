@@ -17,6 +17,12 @@ class _JoinSessionPageState extends State<JoinSessionPage> {
   final TextEditingController _controller = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+    wordsModel.isPlayer1 = false;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],

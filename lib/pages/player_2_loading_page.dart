@@ -33,9 +33,9 @@ class Player2LoadingPage extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               TimerWidget(
-                duration: 10,
-                delay: 1,
-                onTimerEnd: () => Navigator.of(context).pushNamed('/discoverPage'),
+                duration: 30,
+                onTimerEnd: () =>
+                    Navigator.of(context).pushNamed('/discoverPage'),
               ),
             ],
           ),

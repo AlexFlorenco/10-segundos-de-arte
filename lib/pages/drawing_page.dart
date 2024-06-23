@@ -1,6 +1,5 @@
 import 'package:artes/components/timer_widget.dart';
 import 'package:artes/models/words_model.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 import 'package:scribble/scribble.dart';
@@ -39,7 +38,7 @@ class _DrawingPageState extends State<DrawingPage> {
               duration: 10,
               size: 30,
               onTimerEnd: () {
-                _showImage(context);
+                _renderAndAddDraw(context);
                 Navigator.of(context).pushNamed('/timesOver');
               },
             ),
@@ -110,34 +109,8 @@ class _DrawingPageState extends State<DrawingPage> {
     ];
   }
 
-  void _showImage(BuildContext context) async {
-    final image = notifier.renderImage();
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Generated Image"),
-        content: SizedBox.expand(
-          child: FutureBuilder(
-            future: image,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done &&
-                  snapshot.hasData) {
-                Uint8List imageData = snapshot.data!.buffer.asUint8List();
-                WordsModel.instance.addImage(imageData);
-                return Image.memory(imageData);
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
-            },
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: Navigator.of(context).pop,
-            child: const Text("Close"),
-          )
-        ],
-      ),
-    );
+  void _renderAndAddDraw(BuildContext context) async {
+    final image = await notifier.renderImage();
+    WordsModel.instance.addDraw(image.buffer.asUint8List());
   }
 }

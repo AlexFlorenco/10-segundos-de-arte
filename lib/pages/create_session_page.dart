@@ -19,6 +19,7 @@ class _CreateSessionPageState extends State<CreateSessionPage> {
     super.initState();
     wordsModel.createSession();
     sessionCode = wordsModel.sessionCode;
+    wordsModel.isPlayer1 = true;
     wordsModel.awaitingSecondPlayer(context);
   }
 
