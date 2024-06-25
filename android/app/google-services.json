@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "939951554811",
+    "firebase_url": "https://segundos-de-arte-default-rtdb.firebaseio.com",
     "project_id": "segundos-de-arte",
     "storage_bucket": "segundos-de-arte.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.artes.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "939951554811-8607vl2bfft70srsl3qiam3du4i3pvu2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.artes.app",
+            "certificate_hash": "1b9dc9fdc0547a8b71db4d8d225755eddfb6013c"
+          }
+        },
+        {
+          "client_id": "939951554811-3l82s05jd1i914aggheqm2t9qi251fd8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBkuTLJgkYd2yg_66TUv1T5EbaI_QY7ubg"
@@ -20,7 +34,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "939951554811-3l82s05jd1i914aggheqm2t9qi251fd8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "939951554811-4dki8so4ns8snuvr9tunonm539hs0tfi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.artes"
+              }
+            }
+          ]
         }
       }
     }
