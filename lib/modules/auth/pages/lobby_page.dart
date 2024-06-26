@@ -4,8 +4,8 @@ import 'package:artes/components/app_text_button.dart';
 import 'package:artes/components/drawable_body.dart';
 import 'package:artes/components/gap.dart';
 import 'package:artes/core/theme/app_text_style.dart';
-import 'package:artes/modules/home/controller/home_controller.dart';
 import 'package:artes/data/user_data.dart';
+import 'package:artes/modules/auth/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 
 class LobbyPage extends StatefulWidget {
@@ -87,8 +87,9 @@ class _LobbyPageState extends State<LobbyPage> {
                   ),
                 ),
                 onTap: () {
-                  HomeController.logout();
-                  Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+                  AuthController.logout();
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, '/', (route) => false);
                 },
               )
             ],

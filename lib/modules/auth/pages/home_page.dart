@@ -5,8 +5,8 @@ import 'package:artes/components/drawable_body.dart';
 import 'package:artes/components/gap.dart';
 import 'package:artes/core/theme/app_colors.dart';
 import 'package:artes/core/theme/app_text_style.dart';
-import 'package:artes/modules/home/controller/home_controller.dart';
-import 'package:artes/modules/home/pages/how_it_works_page.dart';
+import 'package:artes/modules/auth/controller/auth_controller.dart';
+import 'package:artes/modules/auth/pages/how_it_works_page.dart';
 import 'package:artes/services/local_service.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +46,8 @@ class _HomePageState extends State<HomePage> {
                 TextSpan(text: 'segundos', style: TextStyle(fontSize: 40)),
                 TextSpan(text: '\n'),
                 TextSpan(text: 'de ', style: TextStyle(fontSize: 30)),
-                TextSpan(text: 'Arte', style: TextStyle(height: 0.8, fontSize: 60)),
+                TextSpan(
+                    text: 'Arte', style: TextStyle(height: 0.8, fontSize: 60)),
               ],
             ),
           ),
@@ -57,10 +58,11 @@ class _HomePageState extends State<HomePage> {
               if (_isLogged) {
                 Navigator.pushNamed(context, '/lobby');
               } else {
-                _isLogged = await HomeController.login();
+                _isLogged = await AuthController.login();
                 _isLogged
                     ? Navigator.pushNamed(context, '/lobby')
-                    : _showSnackbar(Text('Login não efetuado!', style: const TextStyle().snackbar));
+                    : _showSnackbar(Text('Login não efetuado!',
+                        style: const TextStyle().snackbar));
               }
             },
           ),

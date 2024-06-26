@@ -4,9 +4,10 @@ import 'package:artes/services/google_auth_service.dart';
 import 'package:artes/services/local_service.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class HomeController {
+class AuthController {
   static Future<bool> login() async {
-    GoogleSignInAccount? googleUser = await GoogleAuthService().signInWithGoogle();
+    GoogleSignInAccount? googleUser =
+        await GoogleAuthService().signInWithGoogle();
     try {
       if (googleUser != null) {
         LocalService.saveUserDetails(
