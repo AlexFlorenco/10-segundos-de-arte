@@ -1,20 +1,33 @@
 import 'dart:math';
 
-import 'package:artes/models/words_model.dart';
-import 'package:flutter/material.dart';
+import 'package:artes/models/user_model.dart';
+import 'package:artes/services/session_manager_service.dart';
 
 class SessionManagerController {
-  GameService gameService = GameService.instance;
-
-  String createSession(BuildContext context) {
+  String? createSession() {
     String sessioncode = _generateSessionCode();
 
-    gameService.createSession(sessioncode, context);
-    return sessioncode;
+    var created = SessionManagerService().createSession(sessioncode);
+    if (created) {
+      return sessioncode;
+    }
+    return null;
+  }
+
+  Future<UserModel?> waitForSecondPlayer(String id) async {
+    UserModel? player2;
+    await SessionManagerService().awaitSecondPlayer(id).then(
+      (value) {
+        if (value != null) {
+          player2 = value;
+        }
+      },
+    );
+    return player2;
   }
 
   Future<bool> joinSession(String sessionCode) async {
-    return await gameService.joinSession(sessionCode);
+    return await SessionManagerService().joinSession(sessionCode);
   }
 
   String _generateSessionCode() => Random.secure().nextInt(999999).toString();

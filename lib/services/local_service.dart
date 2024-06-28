@@ -10,12 +10,12 @@ class LocalService {
     if (userString == null) return false;
 
     UserModel user = UserModel.fromJson(json.decode(userString));
-    UserDetails.instance.setUser = user;
+    PlayersDetails.instance.setPlayer1 = user;
     return true;
   }
 
   static void saveUserDetails(UserModel user) {
-    UserDetails.instance.setUser = user;
+    PlayersDetails.instance.setPlayer1 = user;
     String userString = json.encode(user.toMap());
     SharedPrefs.instance.setString('user', userString);
   }

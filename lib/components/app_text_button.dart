@@ -72,7 +72,7 @@ class _AppTextButtonState extends State<AppTextButton> {
           child: Center(
             child: _isLoading
                 ? LoadingAnimationWidget.inkDrop(
-                    color: AppColors.black,
+                    color: widget.isDark ? AppColors.white : AppColors.black,
                     size: 24,
                   )
                 : null,

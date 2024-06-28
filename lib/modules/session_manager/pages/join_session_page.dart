@@ -16,13 +16,14 @@ class JoinSessionPage extends StatefulWidget {
 }
 
 class _JoinSessionPageState extends State<JoinSessionPage> {
-  late final SessionManagerController sessionManagerController;
-  final TextEditingController inputController = TextEditingController();
+  late final SessionManagerController controller;
+  late final TextEditingController inputController;
 
   @override
   void initState() {
     super.initState();
-    sessionManagerController = SessionManagerController();
+    controller = SessionManagerController();
+    inputController = TextEditingController();
   }
 
   @override
@@ -57,10 +58,10 @@ class _JoinSessionPageState extends State<JoinSessionPage> {
                 label: 'INGRESSAR',
                 isDark: true,
                 onPressed: () async {
-                  bool response = await sessionManagerController
-                      .joinSession(inputController.text);
-                  if (response) {
-                    return Navigator.pushNamed(context, '/match');
+                  bool response = await controller.joinSession(inputController.text);
+                  if (!mounted) return;
+                  if (response)  {
+                    Navigator.pushNamed(context, '/match');
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(
                       AppSnackbar(

@@ -3,6 +3,7 @@ import 'package:artes/components/app_snackbar.dart';
 import 'package:artes/components/app_text_button.dart';
 import 'package:artes/components/drawable_body.dart';
 import 'package:artes/components/gap.dart';
+import 'package:artes/components/user_image_circle.dart';
 import 'package:artes/core/theme/app_text_style.dart';
 import 'package:artes/data/user_data.dart';
 import 'package:artes/modules/auth/controller/auth_controller.dart';
@@ -22,17 +23,14 @@ class _LobbyPageState extends State<LobbyPage> {
     _showSnackbar(
       Row(
         children: [
-          ClipOval(
-            child: Image.network(
-              UserDetails.instance.user!.photoUrl,
-              width: 26,
-              height: 26,
-            ),
+          UserImageCircle(
+            photoUrl: PlayersDetails.instance.player1!.photoUrl,
+            size: 26,
           ),
           Gap.w(10),
           Expanded(
             child: Text(
-              'Logado como ${UserDetails.instance.user!.displayName}',
+              'Logado como ${PlayersDetails.instance.player1!.displayName}',
               textAlign: TextAlign.start,
               style: const TextStyle()
                   .snackbar

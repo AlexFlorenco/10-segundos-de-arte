@@ -1,9 +1,13 @@
 import 'package:artes/components/app_back_button.dart';
+import 'package:artes/components/app_snackbar.dart';
 import 'package:artes/components/drawable_body.dart';
 import 'package:artes/components/gap.dart';
+import 'package:artes/components/user_image_circle.dart';
 import 'package:artes/core/theme/app_colors.dart';
 import 'package:artes/core/theme/app_text_style.dart';
+import 'package:artes/models/user_model.dart';
 import 'package:artes/modules/session_manager/controller/session_manager_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CreateSessionPage extends StatefulWidget {
@@ -14,14 +18,56 @@ class CreateSessionPage extends StatefulWidget {
 }
 
 class _CreateSessionPageState extends State<CreateSessionPage> {
-  late final SessionManagerController sessionManagerController;
-  late final String sessionCode;
+  late final SessionManagerController controller;
+  late final String? sessionCode;
+  late final UserModel? player2;
 
   @override
   void initState() {
     super.initState();
-    sessionManagerController = SessionManagerController();
-    sessionCode = sessionManagerController.createSession(context);
+    controller = SessionManagerController();
+    sessionCode = controller.createSession();
+    if (sessionCode != null) _waitForSecondPlayer();
+  }
+
+  void _waitForSecondPlayer() async {
+    UserModel? secondPlayer = await controller.waitForSecondPlayer(sessionCode!);
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        AppSnackbar(
+          duration: secondPlayer != null
+              ? const Duration(seconds: 2)
+              : const Duration(seconds: 60),
+          content: Row(
+            children: [
+              secondPlayer != null
+                  ? UserImageCircle(
+                      photoUrl: secondPlayer.photoUrl,
+                      size: 26,
+                    )
+                  : const SizedBox.shrink(),
+              secondPlayer != null ? Gap.w(10) : const SizedBox.shrink(),
+              Expanded(
+                child: Text(
+                  secondPlayer != null
+                      ? '${secondPlayer.displayName.split(' ')[0]} entrou na sessão!'
+                      : 'Erro ao entrar na sessão!',
+                  textAlign: TextAlign.start,
+                  style: const TextStyle()
+                      .snackbar
+                      .copyWith(overflow: TextOverflow.ellipsis),
+                ),
+              ),
+            ],
+          ),
+        ).launch,
+      );
+      if (secondPlayer != null) {
+        Future.delayed(const Duration(seconds: 2), () {
+          Navigator.of(context).pushNamed('/match');
+        });
+      }
+    }
   }
 
   @override
@@ -46,7 +92,7 @@ class _CreateSessionPageState extends State<CreateSessionPage> {
                 style: const TextStyle().label,
               ),
               Text(
-                sessionCode,
+                sessionCode ?? 'Erro',
                 textAlign: TextAlign.center,
                 style: const TextStyle().display,
               ),

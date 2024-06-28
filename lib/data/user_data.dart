@@ -1,11 +1,14 @@
 import 'package:artes/models/user_model.dart';
 
-class UserDetails {
-  UserDetails._();
-  static final UserDetails instance = UserDetails._();
+class PlayersDetails {
+  PlayersDetails._();
+  static final PlayersDetails instance = PlayersDetails._();
 
-  UserModel? _user;
-  UserModel? get user => _user;
+  UserModel? _player1;
+  UserModel? get player1 => _player1;
+  set setPlayer1(UserModel user) => _player1 = user;
 
-  set setUser(UserModel user) => _user = user;
+  UserModel? _player2;
+  UserModel? get player2 => _player2;
+  set setPlayer2(UserModel user) => _player2 = user;
 }
