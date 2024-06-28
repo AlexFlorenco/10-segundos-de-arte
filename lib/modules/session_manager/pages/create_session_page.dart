@@ -7,7 +7,6 @@ import 'package:artes/core/theme/app_colors.dart';
 import 'package:artes/core/theme/app_text_style.dart';
 import 'package:artes/models/user_model.dart';
 import 'package:artes/modules/session_manager/controller/session_manager_controller.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class CreateSessionPage extends StatefulWidget {
@@ -20,7 +19,6 @@ class CreateSessionPage extends StatefulWidget {
 class _CreateSessionPageState extends State<CreateSessionPage> {
   late final SessionManagerController controller;
   late final String? sessionCode;
-  late final UserModel? player2;
 
   @override
   void initState() {
