@@ -24,13 +24,13 @@ class _LobbyPageState extends State<LobbyPage> {
       Row(
         children: [
           UserImageCircle(
-            photoUrl: PlayersDetails.instance.player1!.photoUrl,
+            photoUrl: PlayersDetails.instance.localPlayer!.photoUrl,
             size: 26,
           ),
           Gap.w(10),
           Expanded(
             child: Text(
-              'Logado como ${PlayersDetails.instance.player1!.displayName}',
+              'Logado como ${PlayersDetails.instance.localPlayer!.displayName}',
               textAlign: TextAlign.start,
               style: const TextStyle()
                   .snackbar

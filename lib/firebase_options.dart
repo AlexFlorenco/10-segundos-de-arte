@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '939951554811',
     projectId: 'segundos-de-arte',
     storageBucket: 'segundos-de-arte.appspot.com',
-    iosBundleId: 'com.example.artes',
+    iosBundleId: 'com.artes.app',
   );
 }

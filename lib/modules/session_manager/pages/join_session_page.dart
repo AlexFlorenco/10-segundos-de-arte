@@ -61,6 +61,7 @@ class _JoinSessionPageState extends State<JoinSessionPage> {
                   bool response = await controller.joinSession(inputController.text);
                   if (!mounted) return;
                   if (response)  {
+                    await Future.delayed(const Duration(seconds: 1));
                     Navigator.pushNamed(context, '/match');
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(

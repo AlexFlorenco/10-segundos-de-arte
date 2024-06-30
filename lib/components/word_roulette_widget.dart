@@ -1,6 +1,7 @@
 import 'dart:math';
 
-import 'package:artes/models/words_model.dart';
+import 'package:artes/core/theme/app_colors.dart';
+import 'package:artes/services/game_service.dart';
 import 'package:flutter/material.dart';
 
 class WordRouletteWidget extends StatefulWidget {
@@ -101,7 +102,7 @@ class _WordRouletteWidgetState extends State<WordRouletteWidget>
           } else {
             _currentIndex = Random().nextInt(words.length);
             setState(() {});
-            WordsModel.instance.addWord(words[_currentIndex]);
+            GameService.instance.saveWord(words[_currentIndex]);
           }
         }
       });
@@ -118,9 +119,9 @@ class _WordRouletteWidgetState extends State<WordRouletteWidget>
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: 80,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.white,
         body: Center(
           child: AnimatedBuilder(
             animation: _animation!,

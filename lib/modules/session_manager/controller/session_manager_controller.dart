@@ -15,15 +15,15 @@ class SessionManagerController {
   }
 
   Future<UserModel?> waitForSecondPlayer(String id) async {
-    UserModel? player2;
+    UserModel? guestPlayer;
     await SessionManagerService().awaitSecondPlayer(id).then(
       (value) {
         if (value != null) {
-          player2 = value;
+          guestPlayer = value;
         }
       },
     );
-    return player2;
+    return guestPlayer;
   }
 
   Future<bool> joinSession(String sessionCode) async {

@@ -1,14 +1,14 @@
-import 'package:artes/pages/check_page.dart';
-import 'package:artes/pages/create_session_page.dart';
-import 'package:artes/pages/discovery_page.dart';
-import 'package:artes/pages/old_discover_page.dart';
-import 'package:artes/pages/drawing_page.dart';
-import 'package:artes/pages/enter_session_page.dart';
-import 'package:artes/pages/home_page.dart';
-import 'package:artes/pages/player_1_loading_page.dart';
-import 'package:artes/pages/player_2_loading_page.dart';
-import 'package:artes/pages/choose_session_page.dart';
-import 'package:artes/pages/times_over_page.dart';
+import 'package:artes/modules/in_game/pages/discovery_page.dart';
+import 'package:artes/modules/in_game/pages/loading_page.dart';
+import 'package:artes/modules/in_game/pages/points_page.dart';
+import 'package:artes/modules/in_game/pages/result_page.dart';
+import 'package:artes/modules/session_manager/pages/create_session_page.dart';
+import 'package:artes/modules/in_game/pages/drawing_page.dart';
+import 'package:artes/modules/session_manager/pages/join_session_page.dart';
+import 'package:artes/modules/auth/pages/home_page.dart';
+import 'package:artes/modules/session_manager/pages/match_page.dart';
+import 'package:artes/modules/auth/pages/lobby_page.dart';
+import 'package:artes/modules/in_game/pages/times_over_page.dart';
 import 'package:flutter/material.dart';
 
 class AppWidget extends StatelessWidget {
@@ -23,15 +23,16 @@ class AppWidget extends StatelessWidget {
       ),
       routes: {
         '/': (context) => const HomePage(),
-        '/chooseSession': (context) => const ChooseSessionsPage(),
+        '/lobby': (context) => const LobbyPage(),
         '/createSession': (context) => const CreateSessionPage(),
-        '/player1loading': (context) => const Player1LoadingPage(),
         '/joinSession': (context) => const JoinSessionPage(),
-        '/player2loading': (context) => const Player2LoadingPage(),
-        '/drawing': (context) => DrawingPage(),
-        '/discoverPage': (context) => const DiscoverPage(),
+        '/match': (context) => const MatchPage(),
+        '/loading': (context) => const LoadingPage(),
+        '/drawing': (context) => const DrawingPage(),
         '/timesOver': (context) => const TimesOverPage(),
-        '/check': (context) => const CheckPage(),
+        '/discovery': (context) => const DiscoveryPage(),
+        '/check': (context) => const ResultPage(),
+        '/points': (context) => const PointsPage(),
       },
     );
   }

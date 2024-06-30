@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:artes/data/user_data.dart';
+import 'package:artes/services/game_service.dart';
 import 'package:artes/models/user_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -8,17 +9,17 @@ class SessionManagerService {
   final dbRef = FirebaseDatabase.instance.ref();
 
   bool createSession(String id) {
-    // _isHost = true;
     final Map<String, Map> updates = {};
 
     try {
       updates['sessions/$id'] = {
-        'player1': {
-          'name': PlayersDetails.instance.player1?.displayName,
-          'photoUrl': PlayersDetails.instance.player1?.photoUrl,
+        'hostPlayer': {
+          'name': PlayersDetails.instance.localPlayer?.displayName,
+          'photoUrl': PlayersDetails.instance.localPlayer?.photoUrl,
         }
       };
       dbRef.update(updates);
+      _setSessionCodeAndHosting(id, isHosting: true);
       return true;
     } catch (e) {
       return false;
@@ -26,12 +27,11 @@ class SessionManagerService {
   }
 
   Future<bool> joinSession(String id) async {
-    // _isHost = false;
     final Map<String, Map> updates = {};
     try {
-      updates['sessions/$id/player2'] = {
-        'name': PlayersDetails.instance.player1?.displayName,
-        'photoUrl': PlayersDetails.instance.player1?.photoUrl,
+      updates['sessions/$id/guestPlayer'] = {
+        'name': PlayersDetails.instance.localPlayer?.displayName,
+        'photoUrl': PlayersDetails.instance.localPlayer?.photoUrl,
       };
       await dbRef.update(updates);
     } catch (e) {
@@ -39,14 +39,15 @@ class SessionManagerService {
     }
 
     final ref = FirebaseDatabase.instance.ref("sessions/$id");
-    var snapshot = await ref.child('player1').get();
+    var snapshot = await ref.child('hostPlayer').get();
     Map? value = snapshot.value as Map?;
 
     if (snapshot.value != null) {
-      PlayersDetails.instance.setPlayer2 = UserModel(
+      PlayersDetails.instance.setRemotePlayer = UserModel(
         displayName: value!['name'],
         photoUrl: value['photoUrl'],
       );
+      _setSessionCodeAndHosting(id, isHosting: false);
       return true;
     } else {
       return false;
@@ -56,21 +57,25 @@ class SessionManagerService {
   Future<UserModel?> awaitSecondPlayer(String id) {
     Completer<UserModel?> completer = Completer<UserModel?>();
 
-    final DatabaseReference dbRefPlayer2 =
-        FirebaseDatabase.instance.ref('sessions/$id/player2');
+    final DatabaseReference dbRefguestPlayer =
+        FirebaseDatabase.instance.ref('sessions/$id/guestPlayer');
 
-    dbRefPlayer2.onValue.listen(
+    dbRefguestPlayer.onValue.listen(
       (event) {
         Map<dynamic, dynamic>? data = event.snapshot.value as Map?;
         if (data != null) {
-          PlayersDetails.instance.setPlayer2 = UserModel(
+          PlayersDetails.instance.setRemotePlayer = UserModel(
             displayName: data['name'],
             photoUrl: data['photoUrl'],
           );
-          completer.complete(PlayersDetails.instance.player2);
+          completer.complete(PlayersDetails.instance.remotePlayer);
         }
       },
     );
     return completer.future;
+  }
+
+  _setSessionCodeAndHosting(String id, {required bool isHosting}) {
+    GameService.instance.setSessionCodeAndHosting(id, isHosting: isHosting);
   }
 }

@@ -61,7 +61,7 @@ class _CreateSessionPageState extends State<CreateSessionPage> {
         ).launch,
       );
       if (secondPlayer != null) {
-        Future.delayed(const Duration(seconds: 2), () {
+        Future.delayed(const Duration(milliseconds: 1250), () {
           Navigator.of(context).pushNamed('/match');
         });
       }

@@ -5,8 +5,14 @@ import 'package:scribble/scribble.dart';
 class DrawableBody extends StatefulWidget {
   final Widget child;
   final EdgeInsets? padding;
+  final Color? backgroundColor;
 
-  const DrawableBody({super.key, required this.child, this.padding});
+  const DrawableBody({
+    super.key,
+    required this.child,
+    this.padding,
+    this.backgroundColor = AppColors.grey,
+  });
 
   @override
   State<DrawableBody> createState() => _DrawableBodyState();
@@ -29,7 +35,7 @@ class _DrawableBodyState extends State<DrawableBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.grey,
+      backgroundColor: widget.backgroundColor,
       body: SafeArea(
         child: Stack(
           children: [

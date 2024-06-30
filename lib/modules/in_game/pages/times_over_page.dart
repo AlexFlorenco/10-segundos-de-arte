@@ -1,9 +1,10 @@
-import 'package:artes/models/words_model.dart';
-import 'package:artes/pages/discovery_page.dart';
-import 'package:artes/pages/home_page.dart';
-import 'package:artes/pages/player_1_loading_page.dart';
+import 'package:artes/core/theme/app_colors.dart';
+import 'package:artes/core/theme/app_text_style.dart';
+import 'package:artes/modules/in_game/pages/result_page.dart';
+import 'package:artes/modules/in_game/pages/discovery_page.dart';
+import 'package:artes/modules/in_game/pages/loading_page.dart';
+import 'package:artes/services/game_service.dart';
 import 'package:flutter/material.dart';
-import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
 class TimesOverPage extends StatefulWidget {
   const TimesOverPage({super.key});
@@ -29,18 +30,15 @@ class _TimesOverPageState extends State<TimesOverPage>
       end: 1.5,
     ).animate(CurvedAnimation(parent: _controller!, curve: Curves.easeInOut));
     Future.delayed(const Duration(seconds: 2), () {
-      switch (WordsModel.instance.roundCounter) {
-        case == 3:
-          return Navigator.push(context, FadeRoute(page: const HomePage()));
-
-        case < 3:
-          if (WordsModel.instance.isPlayer1) {
-            return Navigator.push(
-                context, FadeRoute(page: const Player1LoadingPage()));
-          } else {
-            return Navigator.push(
-                context, FadeRoute(page: const DiscoverPage()));
-          }
+      int roundCounter = GameService.instance.roundCounter;
+      if (roundCounter == -2) {
+        GameService.instance.roundCounter++;
+        Navigator.push(context, FadeRoute(page: const DiscoveryPage()));
+      } else if (roundCounter == -1) {
+        GameService.instance.roundCounter++;
+        Navigator.push(context, FadeRoute(page: const ResultPage()));
+      } else {
+        Navigator.push(context, FadeRoute(page: const LoadingPage()));
       }
     });
   }
@@ -54,28 +52,26 @@ class _TimesOverPageState extends State<TimesOverPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: NeuContainer(
-        color: Colors.white,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AnimatedBuilder(
-              animation: _animation!,
-              builder: (context, child) => Transform.scale(
-                scale: _animation!.value,
-                child: child,
-              ),
-              child: const Center(
-                child: Text(
-                  'TEMPO\nESGOTADO!',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 42),
-                ),
+      backgroundColor: AppColors.white,
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          AnimatedBuilder(
+            animation: _animation!,
+            builder: (context, child) => Transform.scale(
+              scale: _animation!.value,
+              child: child,
+            ),
+            child: Center(
+              child: Text(
+                'TEMPO\nESGOTADO!',
+                textAlign: TextAlign.center,
+                style: const TextStyle().display,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

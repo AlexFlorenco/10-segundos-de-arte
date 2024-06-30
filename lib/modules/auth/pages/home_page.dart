@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:artes/components/app_icon_button.dart';
 import 'package:artes/components/app_snackbar.dart';
 import 'package:artes/components/app_text_button.dart';
@@ -8,6 +10,7 @@ import 'package:artes/core/theme/app_text_style.dart';
 import 'package:artes/modules/auth/controller/auth_controller.dart';
 import 'package:artes/modules/auth/pages/how_it_works_page.dart';
 import 'package:artes/services/local_service.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -69,7 +72,10 @@ class _HomePageState extends State<HomePage> {
           Gap.h(16),
           AppTextButton.light(
             label: 'MODO OFFLINE',
-            onPressed: () {},
+            onPressed: () async {
+              final fcmToken = await FirebaseMessaging.instance.getToken();
+              log(fcmToken.toString());
+            },
           ),
           const Spacer(),
           Row(

@@ -14,7 +14,8 @@ class MatchPage extends StatefulWidget {
   State<MatchPage> createState() => _MatchPageState();
 }
 
-class _MatchPageState extends State<MatchPage> with SingleTickerProviderStateMixin {
+class _MatchPageState extends State<MatchPage>
+    with SingleTickerProviderStateMixin {
   AnimationController? _shakeController;
 
   @override
@@ -26,7 +27,7 @@ class _MatchPageState extends State<MatchPage> with SingleTickerProviderStateMix
     )..repeat(reverse: true);
 
     Future.delayed(const Duration(seconds: 2), () {
-      // Navigator.of(context).pushNamed('/player1loading');
+      Navigator.of(context).pushNamed('/loading');
     });
   }
 
@@ -48,7 +49,8 @@ class _MatchPageState extends State<MatchPage> with SingleTickerProviderStateMix
   Widget build(BuildContext context) {
     return DrawableBody(
       padding: const EdgeInsets.symmetric(horizontal: 48),
-      child: Column(mainAxisAlignment: MainAxisAlignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             'A PARTIDA VAI COMEÇAR!',
@@ -60,8 +62,8 @@ class _MatchPageState extends State<MatchPage> with SingleTickerProviderStateMix
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               UserImageCircle(
-                photoUrl: PlayersDetails.instance.player1!.photoUrl,
-                displayName: PlayersDetails.instance.player1!.displayName,
+                photoUrl: PlayersDetails.instance.localPlayer!.photoUrl,
+                displayName: PlayersDetails.instance.localPlayer!.displayName,
                 size: 100,
               ),
               Gap.w(16),
@@ -69,7 +71,10 @@ class _MatchPageState extends State<MatchPage> with SingleTickerProviderStateMix
                 animation: _shakeAnimation,
                 builder: (context, child) {
                   return Transform.translate(
-                    offset: Offset(_shakeAnimation.value * sin(_shakeController!.value * 2 * pi), 0),
+                    offset: Offset(
+                        _shakeAnimation.value *
+                            sin(_shakeController!.value * 2 * pi),
+                        0),
                     child: child,
                   );
                 },
@@ -77,8 +82,8 @@ class _MatchPageState extends State<MatchPage> with SingleTickerProviderStateMix
               ),
               Gap.w(16),
               UserImageCircle(
-                photoUrl: PlayersDetails.instance.player2!.photoUrl,
-                displayName: PlayersDetails.instance.player2!.displayName,
+                photoUrl: PlayersDetails.instance.remotePlayer!.photoUrl,
+                displayName: PlayersDetails.instance.remotePlayer!.displayName,
                 size: 100,
               ),
             ],
