@@ -15,7 +15,8 @@ class DiscoveryPage extends StatefulWidget {
   State<DiscoveryPage> createState() => _DiscoveryPageState();
 }
 
-class _DiscoveryPageState extends State<DiscoveryPage> with SingleTickerProviderStateMixin {
+class _DiscoveryPageState extends State<DiscoveryPage>
+    with SingleTickerProviderStateMixin {
   late TabController _tabController;
   late List<TextEditingController> _controllers;
   bool isKeyboardOpen = false;
@@ -34,7 +35,8 @@ class _DiscoveryPageState extends State<DiscoveryPage> with SingleTickerProvider
     future = _getDraws();
   }
 
-  Future<List<Uint8List>> _getDraws() async => await GameController().getDraws();
+  Future<List<Uint8List>> _getDraws() async =>
+      await GameController().getDraws();
 
   @override
   void dispose() {
@@ -152,6 +154,8 @@ class _DiscoveryPageState extends State<DiscoveryPage> with SingleTickerProvider
                 onPressed: () {
                   if (_tabController.index < _tabController.length - 1) {
                     _tabController.animateTo(_tabController.index + 1);
+                  } else {
+                    _tabController.animateTo(0);
                   }
                 },
               )
