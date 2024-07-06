@@ -44,10 +44,12 @@ class _DrawingPageState extends State<DrawingPage> {
               duration: 10,
               size: 28,
               onTimerEnd: () async {
-                final image = await notifier.renderImage();
-                GameController().saveDraw(draw: image.buffer.asUint8List());
-                GameController().setRoundToDb();
                 Navigator.of(context).pushNamed('/timesOver');
+                await Future.delayed(const Duration(seconds: 1), () async {
+                  final image = await notifier.renderImage();
+                  GameController().saveDraw(draw: image.buffer.asUint8List());
+                  GameController().setRoundToDb();
+                });
               },
             ),
           ],
