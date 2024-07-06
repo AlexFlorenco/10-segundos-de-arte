@@ -176,11 +176,13 @@ class _ResultPageState extends State<ResultPage>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: AppTextButton(
-                  label:
-                      showingFirstResult ? 'VER OPONENTE' : 'VER SEU RESULTADO',
+                  label: showingFirstResult
+                      ? 'RESPOSTAS DO OPONENTE'
+                      : 'SUAS RESPOSTAS',
                   onPressed: () async {
                     setState(() {
                       showingFirstResult = !showingFirstResult;
+                      _tabController.animateTo(0);
                     });
                   }),
             ),
@@ -188,7 +190,7 @@ class _ResultPageState extends State<ResultPage>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: AppTextButton(
-                label: 'PROSSEGUIR',
+                label: 'VER RESULTADO',
                 isDark: true,
                 onPressed: () {
                   Navigator.pushNamed(context, '/points');
