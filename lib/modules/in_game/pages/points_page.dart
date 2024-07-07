@@ -250,14 +250,14 @@ class _PointsPageState extends State<PointsPage> with TickerProviderStateMixin {
   }
 }
 
-Widget _titlePage(bool _localPlayerWinner, bool _remotePlayerWinner) {
-  if (_localPlayerWinner) {
+Widget _titlePage(bool localPlayerWinner, bool remotePlayerWinner) {
+  if (localPlayerWinner) {
     return Text(
       'FIM DE JOGO\n${PlayersDetails.instance.localPlayer!.displayName.split(' ')[0].toUpperCase()} VENCEU!',
       textAlign: TextAlign.center,
       style: const TextStyle().headline,
     );
-  } else if (_remotePlayerWinner) {
+  } else if (remotePlayerWinner) {
     return Text(
       'FIM DE JOGO\n${PlayersDetails.instance.remotePlayer!.displayName.split(' ')[0].toUpperCase()} VENCEU!',
       textAlign: TextAlign.center,
@@ -276,10 +276,10 @@ class AnimatedCounter extends StatefulWidget {
   final int targetNumber;
   final Duration duration;
 
-  AnimatedCounter({required this.targetNumber, required this.duration});
+  const AnimatedCounter({super.key, required this.targetNumber, required this.duration});
 
   @override
-  _AnimatedCounterState createState() => _AnimatedCounterState();
+  State<AnimatedCounter> createState() => _AnimatedCounterState();
 }
 
 class _AnimatedCounterState extends State<AnimatedCounter>

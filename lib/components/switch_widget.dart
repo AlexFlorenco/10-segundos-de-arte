@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
@@ -27,10 +29,10 @@ class _SwitchWidgetState extends State<SwitchWidget> {
   void _getFunctionBasedOnType() {
     switch (widget.type) {
       case 'sound':
-        print('Sound');
+        log('Sound');
         break;
       case 'brightness':
-        print('Brightness');
+        log('Brightness');
         break;
       default:
         break;
