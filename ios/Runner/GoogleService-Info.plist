@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>939951554811-4dki8so4ns8snuvr9tunonm539hs0tfi.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.939951554811-4dki8so4ns8snuvr9tunonm539hs0tfi</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>939951554811-8607vl2bfft70srsl3qiam3du4i3pvu2.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCZVKrZccStPIVcq2lrMAhdEgxPbDcCa-k</string>
+	<key>GCM_SENDER_ID</key>
+	<string>939951554811</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.artes</string>
+	<key>PROJECT_ID</key>
+	<string>segundos-de-arte</string>
+	<key>STORAGE_BUCKET</key>
+	<string>segundos-de-arte.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:939951554811:ios:d7d3c0fb93c4a967e6b05e</string>
+	<key>DATABASE_URL</key>
+	<string>https://segundos-de-arte-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

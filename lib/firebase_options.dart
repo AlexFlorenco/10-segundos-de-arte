@@ -54,6 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:939951554811:android:a6177bc1947cd571e6b05e',
     messagingSenderId: '939951554811',
     projectId: 'segundos-de-arte',
+    databaseURL: 'https://segundos-de-arte-default-rtdb.firebaseio.com',
     storageBucket: 'segundos-de-arte.appspot.com',
   );
 
@@ -62,7 +63,11 @@ class DefaultFirebaseOptions {
     appId: '1:939951554811:ios:d7d3c0fb93c4a967e6b05e',
     messagingSenderId: '939951554811',
     projectId: 'segundos-de-arte',
+    databaseURL: 'https://segundos-de-arte-default-rtdb.firebaseio.com',
     storageBucket: 'segundos-de-arte.appspot.com',
-    iosBundleId: 'com.artes.app',
+    androidClientId: '939951554811-8607vl2bfft70srsl3qiam3du4i3pvu2.apps.googleusercontent.com',
+    iosClientId: '939951554811-4dki8so4ns8snuvr9tunonm539hs0tfi.apps.googleusercontent.com',
+    iosBundleId: 'com.example.artes',
   );
+
 }
